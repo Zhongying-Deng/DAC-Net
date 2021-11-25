@@ -8,14 +8,14 @@ Please install the [Dassl codebase](https://github.com/KaiyangZhou/Dassl.pytorch
 
 ## Training
 
-Create a folder like `output/dacnet_pacs` where checkpoint and log can be saved.
+Create a folder like `output/dacnet_pacs` (under the Dassl root path) where checkpoint and log can be saved.
 
 Then
 ```bash
-bash train_dacnet.sh
+bash train_dacnet.sh /path/to/your/dataset
 ```
 
-In the bash script, `$DATA` denotes the location where datasets are installed.
+Run the above bash script, then the experiments on PACS will be running. In the script, `$DATA` denotes the location where datasets are installed. For experiments on Digit-Five and DomainNet, modify the `--source-domains`, `--target-domains` and related config files, such as `--dataset-config-file configs/datasets/da/digit5_ca.yaml` and `--config-file configs/trainers/da/dacnet/digit5.yaml`.
 
 The detailed training settings are in the folder named `configs`, such as datasets and backbone name used for DAC-Net (see `configs/datasets/da`), and lr, optimizer etc. (see `configs/trainers/da/dacnet`)
 
