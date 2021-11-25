@@ -1,3 +1,53 @@
 # DAC-Net (BMVC 2021 Oral Presentation)
 
-Pytorch implementation of DAC-Net ("Zhongying Deng, Kaiyang Zhou, Yongxin Yang, Tao Xiang. Domain Attention Consistency for Multi-Source Domain Adaptation. BMVC 2021")
+Pytorch implementation of DAC-Net (["Zhongying Deng, Kaiyang Zhou, Yongxin Yang, Tao Xiang. Domain Attention Consistency for Multi-Source Domain Adaptation. BMVC 2021"](https://www.bmvc2021-virtualconference.com/assets/papers/0353.pdf))
+
+## Installation
+
+Please install the [Dassl codebase](https://github.com/KaiyangZhou/Dassl.pytorch#get-started), and then copy the files in this repository to Dassl. When asked to overwrite, say yes (some `__init__.py` files may be overwritten, these files is modified to include the backbone or trainer used for DAC-Net).
+
+## Training
+
+Create a folder like `output/dacnet_pacs` where checkpoint and log can be saved.
+
+Then
+```bash
+bash train_dacnet.sh
+```
+
+In the bash script, `$DATA` denotes the location where datasets are installed.
+
+The detailed training settings are in the folder named `configs`, such as datasets and backbone name used for DAC-Net (see `configs/datasets/da`), and lr, optimizer etc. (see `configs/trainers/da/dacnet`)
+
+Some important files are under the folder of `dassl`: 
+* Implementation of DAC-Net can be found in `dassl/engine/da/dacnet.py`;
+* The backbone CNN model of our DAC-Net can be found in `dassl/modeling/backbone/resnet_ca.py` (for PACS and DomainNet where ResNet is adopted as backbone) and `dassl/modeling/backbone/cnn_digit5_m3sda_ca.py` (for Digit-Five);
+* Config definition for DAC-Net can be found in `dassl/config/defaults.py` (see last 5 lines);
+
+## Test
+
+Similar to `train_dacnet.sh`, testing can be done like this:
+
+```
+DATA=/root_path/to/your/dataset
+CUDA_VISIBLE_DEVICES=0 python tools/train.py --root $DATA --trainer DACNet \
+ --source-domains cartoon art_painting photo --target-domains sketch \
+ --dataset-config-file configs/datasets/da/pacs_ca.yaml --config-file configs/trainers/da/dacnet/pacs.yaml \
+ --output-dir output/dacnet_pacs/sketch \
+ --eval-only \
+ --model-dir output/dacnet_pacs/sketch \
+ --load-epoch 20 \
+ MODEL.INIT_HEAD_WEIGHTS output/dacnet_pacs/sketch/classifier/model.pth.tar-100
+```
+
+## Citation
+
+If you find this code useful, please consider citing following papers
+```
+@article{deng2021domain,
+  title={Domain Attention Consistency for Multi-Source Domain Adaptation},
+  author={Deng, Zhongying and Zhou, Kaiyang and Yang, Yongxin and Xiang, Tao},
+  journal={arXiv preprint arXiv:2111.03911},
+  year={2021}
+}
+```
