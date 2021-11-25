@@ -1,0 +1,26 @@
+DATALOADER:
+  TRAIN_X:
+    SAMPLER: 'RandomDomainSampler'
+    BATCH_SIZE: 256
+  TRAIN_U:
+    SAME_AS_X: False
+    BATCH_SIZE: 64
+  TEST:
+    BATCH_SIZE: 256
+
+OPTIM:
+  NAME: 'sgd'
+  LR: 0.05
+  STEPSIZE: [30]
+  MAX_EPOCH: 30
+  LR_SCHEDULER: 'cosine'
+
+TRAINER:
+  FIXMATCH:
+    STRONG_TRANSFORMS: ['random_flip', 'randaugment_fixmatch', 'normalize', 'cutout']
+    EMA_ALPHA: 0.999
+  DACNET:
+    LOSS_TYPE: 'L1'
+    WEIGHT_D: 0.3  # DAC loss weight
+    WEIGHT_CON: 0.1  # class compactness loss weight
+

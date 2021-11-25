@@ -42,7 +42,7 @@ CUDA_VISIBLE_DEVICES=0 python tools/train.py --root $DATA --trainer DACNet \
 
 ## Citation
 
-If you find this code useful, please consider citing following papers
+If you find this code useful, please consider citing the following paper:
 ```
 @article{deng2021domain,
   title={Domain Attention Consistency for Multi-Source Domain Adaptation},
