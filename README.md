@@ -37,7 +37,7 @@ CUDA_VISIBLE_DEVICES=0 python tools/train.py --root $DATA --trainer DACNet \
  --eval-only \
  --model-dir output/dacnet_pacs/sketch \
  --load-epoch 20 \
- MODEL.INIT_HEAD_WEIGHTS output/dacnet_pacs/sketch/classifier/model.pth.tar-100
+ MODEL.INIT_HEAD_WEIGHTS output/dacnet_pacs/sketch/classifier/model.pth.tar-20
 ```
 
 ## Citation
