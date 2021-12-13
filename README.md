@@ -25,7 +25,8 @@ Some important files are under the folder of `dassl`:
 * Implementation of DAC-Net can be found in `dassl/engine/da/dacnet.py`;
 * The backbone CNN model of our DAC-Net can be found in `dassl/modeling/backbone/resnet_ca.py` (for PACS and DomainNet where ResNet is adopted as backbone) and `dassl/modeling/backbone/cnn_digit5_m3sda_ca.py` (for Digit-Five);
 * Config definition for DAC-Net can be found in `dassl/config/defaults.py` (see last 5 lines);
-* Trained model on Sketch domain of PACS can be found [here](https://drive.google.com/file/d/1VLWc0K9WVC4Nx6ZZ4uKM_YmCn_s4PjgO/view?usp=sharing). This model gives 84.88% on the Sketch domain.
+
+Trained model on Sketch domain of PACS can be found [here](https://drive.google.com/file/d/1VLWc0K9WVC4Nx6ZZ4uKM_YmCn_s4PjgO/view?usp=sharing). This model gives 84.88% on the Sketch domain.
 
 ## Test
 
