@@ -4,7 +4,9 @@ Pytorch implementation of DAC-Net (["Zhongying Deng, Kaiyang Zhou, Yongxin Yang,
 
 ## Installation
 
-Please install the [Dassl codebase](https://github.com/KaiyangZhou/Dassl.pytorch#get-started), and then copy the files in this repository to Dassl. When asked to overwrite, say yes (some `__init__.py` files may be overwritten, these files is modified to include the backbone or trainer used for DAC-Net).
+Please install the [Dassl codebase](https://github.com/KaiyangZhou/Dassl.pytorch#get-started), and then copy the files in this repository to Dassl. 
+When asked to overwrite, say yes (some `__init__.py` files may be overwritten, these files is modified to include the backbone or trainer used for DAC-Net).
+Then you will install pytorch 1.7.1 + cuda 10.1, python 3.7.
 
 ## Training
 
@@ -23,6 +25,7 @@ Some important files are under the folder of `dassl`:
 * Implementation of DAC-Net can be found in `dassl/engine/da/dacnet.py`;
 * The backbone CNN model of our DAC-Net can be found in `dassl/modeling/backbone/resnet_ca.py` (for PACS and DomainNet where ResNet is adopted as backbone) and `dassl/modeling/backbone/cnn_digit5_m3sda_ca.py` (for Digit-Five);
 * Config definition for DAC-Net can be found in `dassl/config/defaults.py` (see last 5 lines);
+* Trained model on Sketch domain of PACS can be found in `output.tar.gz'. This model gives 84.88% on the Sketch domain.
 
 ## Test
 
@@ -36,8 +39,8 @@ CUDA_VISIBLE_DEVICES=0 python tools/train.py --root $DATA --trainer DACNet \
  --output-dir output/dacnet_pacs/sketch \
  --eval-only \
  --model-dir output/dacnet_pacs/sketch \
- --load-epoch 20 \
- MODEL.INIT_HEAD_WEIGHTS output/dacnet_pacs/sketch/classifier/model.pth.tar-20
+ --load-epoch 30 \
+ MODEL.INIT_HEAD_WEIGHTS output/dacnet_pacs/sketch/classifier/model.pth.tar-30
 ```
 
 ## Citation
